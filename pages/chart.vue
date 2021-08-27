@@ -1,7 +1,7 @@
 <template><div>
   <div class="small">
-    <p>Balance ETH : {{ETH}}</p>
-    <p>Balance ETH : {{BTC}}</p>
+    <p>Balance ETH : {{ETH}} {{ETHEUR?(Math.floor(ETHEUR.ETHEUR*ETH*100)/100)+"€":0}}</p>
+    <p>Balance BTC : {{BTC}} {{BTCEUR?(Math.floor(BTCEUR.BTCEUR*BTC*100)/100)+"€":0}}</p>
     <p>Cours actuelle : {{price[price.length-1]}}</p>
     <line-chart v-if="datacollection" :chart-data="datacollection"></line-chart>
     <button @click="fillData()">Randomize</button>
@@ -46,7 +46,9 @@ export default {
       ETH:0,
       BTC:0,
       ordres: Object,
-      ordresDataset: []
+      ordresDataset: [],
+      ETHEUR:0,
+      BTCEUR:0
 
     }
   },
@@ -58,6 +60,8 @@ export default {
     this.setData(rep.p)
 }
     const client = Binance()
+    this.BTCEUR = await client.prices({symbol:'BTCEUR'})
+    this.ETHEUR=await client.prices({symbol:'ETHEUR'})
     let time;
     client.time().then(t => time = t)
     let keys = require("../key");
@@ -70,8 +74,8 @@ export default {
     await clientConnected.accountInfo().then(orders =>{
       b = orders.balances.filter(a => a.asset==='ETH'||a.asset==='BTC')
     })
-    this.ETH = b[0].free
-    this.BTC = b[1].free
+    this.BTC = b[0].free
+    this.ETH = b[1].free
     let ordre = []
     //openOrders
     //{symbol: 'ETHBTC',}
@@ -166,5 +170,6 @@ export default {
 <style>
 .small {
   display: block;
+  width: 500px;
 }
 </style>

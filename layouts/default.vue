@@ -80,10 +80,9 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer
-      :absolute="!fixed"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ new Date().getFullYear() }} San-gi.tech,  under NUXT and the MIT license </span>
     </v-footer>
   </v-app>
 </template>
@@ -102,10 +101,21 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
+          icon: 'mdi-chart-line',
+          title: 'chart',
+          to: '/chart'
+        },
+        {
+          icon: 'mdi-card-bulleted',
+          title: 'orders',
+          to: '/orders'
+        },
+        {
+          icon: 'mdi-message-text-clock',
+          title: 'logs',
+          to: '/logs'
+        },
+
       ],
       miniVariant: false,
       right: true,
