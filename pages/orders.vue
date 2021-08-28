@@ -1,14 +1,12 @@
 <template>
-
   <div>
+    <v-row>
+      <v-text-field
+        label="What needs to be done?"
+        @keyup.enter="addTodo"
+        clearable></v-text-field>
 
-        <v-row>
-            <v-text-field
-              label="What needs to be done?"
-              @keyup.enter="addTodo"
-              clearable></v-text-field>
-
-        </v-row>
+    </v-row>
 
     <ul>
       <li v-for="todo in todos" :key="todo.id">
@@ -21,24 +19,24 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import {mapMutations} from 'vuex'
 
 export default {
   computed: {
-    todos () {
+    todos() {
       return this.$store.state.todos.list
       return this.$store.state.todos.list
     }
   },
   methods: {
-    addTodo (event) {
+    addTodo(event) {
       this.$store.commit('todos/add', event.target.value)
       event.target.value = ''
     },
     ...mapMutations({
       toggle: 'todos/toggle'
     }),
-    removeTodo (todo){
+    removeTodo(todo) {
 
       this.$store.commit('todos/remove', todo)
     }
