@@ -58,6 +58,10 @@ export default {
         },
         tokenType:'x-access-token'
       }
+    },
+    redirect: {
+      login: '/',
+      home: '/'
     }
   },
 
