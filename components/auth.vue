@@ -81,7 +81,7 @@
       </v-dialog>
     </div>
     <div v-else>
-      <v-toolbar-title class="d-inline">{{ this.$auth.user.email }}</v-toolbar-title>
+      <v-toolbar-title v-text="this.$auth.user.username" class="d-inline"/>
       <v-btn
         icon
         @click="logout()"

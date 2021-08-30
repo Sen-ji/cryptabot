@@ -42,9 +42,15 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    'nuxt-socket-io'
   ],
-
+  io:{
+    sockets: [{
+      name:'main',
+      url:'http://192.168.1.10:3000'
+    }]
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: 'http://192.168.1.10:8080'
